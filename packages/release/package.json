@@ -1,0 +1,59 @@
+{
+  "name": "@yunque/release",
+  "version": "0.1.1",
+  "description": "@yunque/release",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yunquejs/yunque-cli.git"
+  },
+  "keywords": [
+    "yunque",
+    "cli"
+  ],
+  "bugs": {
+    "url": "https://github.com/yunquejs/yunque-cli/issues"
+  },
+  "homepage": "https://github.com/yunquejs/yunque-cli#readme",
+  "author": "君惜",
+  "license": "MIT",
+  "bin": {
+    "yunque-release": "bin/yunque-release.js"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "scripts": {
+    "test": "jest",
+    "dev": "tsup src/index.js src/cli.js --watch src",
+    "build": "yarn clean && run-p build:bundle",
+    "build:bundle": "tsup src/index.js src/cli.js --format cjs,esm",
+    "clean": "rm -rf dist",
+    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx,.vue",
+    "release": "node release.js",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 --commit-path ."
+  },
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "dependencies": {
+    "cac": "^6.7.3",
+    "enquirer": "^2.3.6",
+    "kolorist": "^1.4.1",
+    "execa": "^5.1.0",
+    "semver": "^7.3.5"
+  },
+  "devDependencies": {},
+  "gitHooks": {
+    "pre-commit": "lint-staged",
+    "commit-msg": "node scripts/verify-commit.js"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,vue}": [
+      "eslint --fix",
+      "git add"
+    ]
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}
