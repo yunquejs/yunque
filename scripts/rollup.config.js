@@ -11,9 +11,9 @@ import pkg from '../package.json'
 
 const moduleName = pkg.name
 const version = process.env.VERSION || pkg.version
-const resolve = dir => path.resolve(__dirname, '../', dir)
-console.log('-------------', __dirname)
-console.log('-------------', process.cwd())
+const cwd = process.cwd()
+const resolve = dir => path.resolve(cwd, dir)
+
 const banner =
   '/**\n' +
   ` * ${moduleName} v${version}\n` +
@@ -21,7 +21,7 @@ const banner =
   ' * Released under the ISC License.\n' +
   ' */'
 
-function genConfig(input, name) {
+export function genConfig(input = 'src/index.ts', name) {
   return {
     input: resolve(input),
     external: [...Object.keys(pkg.dependencies)],
@@ -70,7 +70,7 @@ function genConfig(input, name) {
   }
 }
 
-export default genConfig('src/index.ts')
+export default genConfig()
 
 // if use babel, need to create src/.babelrc.json
 // {
