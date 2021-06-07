@@ -1,6 +1,6 @@
 {
   "name": "@yunque/release",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "@yunque/release",
   "repository": {
     "type": "git",
@@ -38,8 +38,8 @@
   "dependencies": {
     "cac": "^6.7.3",
     "enquirer": "^2.3.6",
-    "kolorist": "^1.4.1",
     "execa": "^5.1.0",
+    "kolorist": "^1.4.1",
     "semver": "^7.3.5"
   },
   "devDependencies": {},
