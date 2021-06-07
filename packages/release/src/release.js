@@ -14,14 +14,9 @@ const resolve = (...args) => path.resolve(cwd, ...args)
 const pkg = require(resolve('./package.json'))
 const currentVersion = pkg.version
 
-const packagesPath = './packages/'
-const packages =
-  (fs.existsSync(resolve(packagesPath)) &&
-    fs.readdirSync(resolve(packagesPath)).filter(item => {
-      const stat = fs.lstatSync(resolve(packagesPath + item))
-      return stat.isDirectory()
-    })) ||
-  []
+const inc = i => semver.inc(currentVersion, i)
+const bin = name => resolve('../node_modules/.bin/', name)
+const exec = (bin, args, opts = {}) => execa(bin, args, { stdio: 'inherit', ...opts })
 
 const versionIncrements = [
   'patch',
@@ -33,9 +28,19 @@ const versionIncrements = [
   'prerelease'
 ]
 
+const packagesPath = './packages/'
+const packages =
+  (fs.existsSync(resolve(packagesPath)) &&
+    fs.readdirSync(resolve(packagesPath)).filter(item => {
+      const stat = fs.lstatSync(resolve(packagesPath + item))
+      return stat.isDirectory()
+    })) ||
+  []
+
 const getPkgRoot = pkg => resolve(packagesPath, pkg)
 const step = (msg, newline = true) => console.log(chalk.cyan(newline ? '\n' + msg : msg))
 
+// todo 基于monorepo或者单包进行重构
 async function release(targetVersion, opts) {
   const pkgOptions = pkg.yunque?.release || {}
   let parentOptions = {}
@@ -54,9 +59,6 @@ async function release(targetVersion, opts) {
 
   const { dry, skipTest, skipBuild, skip, skipChangelog } = options
 
-  const inc = i => semver.inc(currentVersion, i)
-  const bin = name => resolve('../node_modules/.bin/', name)
-  const exec = (bin, args, opts = {}) => execa(bin, args, { stdio: 'inherit', ...opts })
   const dryRun = (bin, args, opts = {}) =>
     console.log(chalk.blue(`[dryrun] ${bin} ${args.join(' ')}`), opts)
   const run = dry ? dryRun : exec
@@ -109,19 +111,12 @@ async function release(targetVersion, opts) {
 
   // update all package versions and inter-dependencies
   step('Updating cross dependencies...')
-  if (!dry) {
-    // 1. update root package.json
-    updatePackage(resolve('.'), targetVersion, options)
-    // 2. update all packages
-    packages.forEach(p => updatePackage(getPkgRoot(p), targetVersion, options))
-  } else {
-    console.log(`(skipped updated version)`)
-  }
+  updateVersions(targetVersion, options)
 
   // build all packages with types
   step('Building all packages...')
   if (!skipBuild && !dry) {
-    await run('yarn', ['build', '--release'])
+    await run('yarn', ['build'])
     // test generated dts files
     // step('Verifying type declarations...')
     // await run('yarn', ['test-dts-only'])
@@ -149,9 +144,7 @@ async function release(targetVersion, opts) {
 
   // publish packages
   step('Publishing packages...')
-  for (const pkg of packages) {
-    await publishPackage(pkg, targetVersion, run, options)
-  }
+  await publishPackages(targetVersion, run, options)
 
   // push to GitHub
   step('Pushing to GitHub...')
@@ -171,17 +164,25 @@ async function release(targetVersion, opts) {
   console.log()
 }
 
+function updateVersions(version, options) {
+  updatePackage(path.resolve('.'), version, options)
+  if (!options.monorepo) return
+  packages.forEach(p => updatePackage(getPkgRoot(p), version, options))
+}
+
 function updatePackage(pkgRoot, version, options) {
   const pkgPath = path.resolve(pkgRoot, 'package.json')
   const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'))
   pkg.version = version
+  fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n')
+  if (!options.monorepo) return
   updateDeps(pkg, 'dependencies', version, options)
   updateDeps(pkg, 'peerDependencies', version, options)
-  fs.writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n')
 }
 
 function updateDeps(pkg, depType, version, options) {
-  const { pkgName, pkgPrefix } = options
+  const pkgName = options.pkgName || ''
+  const pkgPrefix = options.pkgPrefix || ''
   const deps = pkg[depType]
   const reg = new RegExp(`^${pkgPrefix}\/`)
   if (!deps) return
@@ -196,12 +197,22 @@ function updateDeps(pkg, depType, version, options) {
   })
 }
 
+async function publishPackages(version, run, options) {
+  await publishPackage('.', version, run, options)
+  if (!options.monorepo) return
+  for (const pkg of packages) {
+    await publishPackage(pkg, version, run, options)
+  }
+}
+
 async function publishPackage(pkgName, version, run, options) {
   const { skip, tag } = options
   if (skip.includes(pkgName)) {
     return
   }
   const pkgRoot = getPkgRoot(pkgName)
+  console.log(pkgName, pkgRoot)
+  // todo stop here, by dry
   const pkgPath = path.resolve(pkgRoot, 'package.json')
   const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'))
   if (pkg.private) {
@@ -210,7 +221,14 @@ async function publishPackage(pkgName, version, run, options) {
 
   step(`Publishing ${pkgName}...`)
 
-  const publicArgs = ['publish', '--new-version', version, '--access', 'public']
+  const publicArgs = [
+    'publish',
+    '--no-git-tag-version',
+    '--new-version',
+    version,
+    '--access',
+    'public'
+  ]
   if (tag) {
     publicArgs.push(`--tag`, tag)
   }

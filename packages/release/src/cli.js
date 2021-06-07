@@ -17,6 +17,9 @@ cli
   .option('--dry', `[boolean] dry run`, {
     default: false
   })
+  .option('--monorepo', `[boolean] monorepo`, {
+    default: false
+  })
   .option('--skipTest', `[boolean] skip test`, {
     default: true
   })
@@ -26,14 +29,14 @@ cli
   .option('--skipChangelog', `[boolean] skip changelog`, {
     default: false
   })
-  .option('--skip [skip]', `[string] skip package, such as package1 package1,package2`)
+  .option('--skip [skip]', `monorepo, [string] skip package, such as package1 package1,package2`)
   .option(
     '--pkgName [pkgName]',
-    `[string] the package name included in the updated version, such as package1 package1,package2`
+    `[string] monorepo, the package name included in the updated version, such as package1 package1,package2`
   )
   .option(
     '--pkgPrefix [pkgPrefix]',
-    `[string] the package name prefix included in the updated version, such as @yunque`
+    `[string] monorepo, the package name prefix included in the updated version, such as @yunque`
   )
   .option(
     '--extend [extend]',
