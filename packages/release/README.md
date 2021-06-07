@@ -1,4 +1,4 @@
-# @yunque/release
+# @yunquejs/release
 
 ## Install
 ```

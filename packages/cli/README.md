@@ -1,1 +1,1 @@
-# @yunque/cli
+# @yunquejs/cli (WIP)
