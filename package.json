@@ -72,7 +72,7 @@
   "yunque": {
     "release": {
       "pkgName": "yunque",
-      "pkgPrefix": "@yunque"
+      "pkgPrefix": "@yunquejs"
     }
   }
 }
