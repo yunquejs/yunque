@@ -198,19 +198,18 @@ function updateDeps(pkg, depType, version, options) {
 }
 
 async function publishPackages(version, run, options) {
-  await publishPackage('.', version, run, options)
+  await publishPackage(null, resolve('.'), version, run, options)
   if (!options.monorepo) return
-  for (const pkg of packages) {
-    await publishPackage(pkg, version, run, options)
+  for (const p of packages) {
+    await publishPackage(p, getPkgRoot(p), version, run, options)
   }
 }
 
-async function publishPackage(pkgName, version, run, options) {
+async function publishPackage(pkgName, pkgRoot, version, run, options) {
   const { skip, tag } = options
   if (skip && skip.includes(pkgName)) {
     return
   }
-  const pkgRoot = getPkgRoot(pkgName)
   console.log(pkgName, pkgRoot)
   // todo stop here, by dry
   const pkgPath = path.resolve(pkgRoot, 'package.json')
