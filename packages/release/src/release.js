@@ -41,7 +41,7 @@ const getPkgRoot = pkg => resolve(packagesPath, pkg)
 const step = (msg, newline = true) => console.log(chalk.cyan(newline ? '\n' + msg : msg))
 
 // todo 基于monorepo或者单包进行重构
-async function release(targetVersion, opts) {
+async function release(version, opts) {
   const pkgOptions = pkg.yunque?.release || {}
   let parentOptions = {}
   const parentPkgPath = pkgOptions.extend || opts.extend
@@ -63,7 +63,7 @@ async function release(targetVersion, opts) {
     console.log(chalk.blue(`[dryrun] ${bin} ${args.join(' ')}`), opts)
   const run = dry ? dryRun : exec
 
-  if (!targetVersion) {
+  if (!version) {
     // no explicit version, offer suggestions
     const { release } = await prompt({
       type: 'select',
@@ -73,7 +73,7 @@ async function release(targetVersion, opts) {
     })
 
     if (release === 'custom') {
-      targetVersion = (
+      version = (
         await prompt({
           type: 'input',
           name: 'version',
@@ -82,18 +82,18 @@ async function release(targetVersion, opts) {
         })
       ).version
     } else {
-      targetVersion = release.match(/\((.*)\)/)[1]
+      version = release.match(/\((.*)\)/)[1]
     }
   }
 
-  if (!semver.valid(targetVersion)) {
-    throw new Error(`invalid target version: ${targetVersion}`)
+  if (!semver.valid(version)) {
+    throw new Error(`invalid target version: ${version}`)
   }
 
   const { yes } = await prompt({
     type: 'confirm',
     name: 'yes',
-    message: `Releasing v${targetVersion}. Confirm?`
+    message: `Releasing v${version}. Confirm?`
   })
 
   if (!yes) {
@@ -111,7 +111,7 @@ async function release(targetVersion, opts) {
 
   // update all package versions and inter-dependencies
   step('Updating cross dependencies...')
-  updateVersions(targetVersion, options)
+  updateVersions(version, options)
 
   // build all packages with types
   step('Building all packages...')
@@ -137,19 +137,19 @@ async function release(targetVersion, opts) {
   if (stdout) {
     step('Committing changes...')
     await run('git', ['add', '-A'])
-    await run('git', ['commit', '-m', `release: v${targetVersion}`])
+    await run('git', ['commit', '-m', `release: v${version}`])
   } else {
     console.log('No changes to commit.')
   }
 
   // publish packages
   step('Publishing packages...')
-  await publishPackages(targetVersion, run, options)
+  await publishPackages(version, run, options)
 
   // push to GitHub
   step('Pushing to GitHub...')
-  await run('git', ['tag', `v${targetVersion}`])
-  await run('git', ['push', 'origin', `refs/tags/v${targetVersion}`])
+  await run('git', ['tag', `v${version}`])
+  await run('git', ['push', 'origin', `refs/tags/v${version}`])
   await run('git', ['push'])
 
   if (dry) {
@@ -207,7 +207,7 @@ async function publishPackages(version, run, options) {
 
 async function publishPackage(pkgName, version, run, options) {
   const { skip, tag } = options
-  if (skip.includes(pkgName)) {
+  if (skip && skip.includes(pkgName)) {
     return
   }
   const pkgRoot = getPkgRoot(pkgName)
