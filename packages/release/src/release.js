@@ -11,12 +11,14 @@ const execa = require('execa')
 
 const cwd = process.cwd()
 const resolve = (...args) => path.resolve(cwd, ...args)
-const pkg = require(resolve('./package.json'))
+const pkg = require('../package.json')
 const currentVersion = pkg.version
 
 const inc = i => semver.inc(currentVersion, i)
 const bin = name => resolve('../node_modules/.bin/', name)
-const exec = (bin, args, opts = {}) => execa(bin, args, { stdio: 'inherit', ...opts })
+const run = (bin, args, opts = {}) => execa(bin, args, { stdio: 'inherit', ...opts })
+const dryRun = (bin, args, opts = {}) =>
+  console.log(chalk.blue(`[dryrun] ${bin} ${args.join(' ')}`), opts)
 
 const versionIncrements = [
   'patch',
@@ -40,7 +42,6 @@ const packages =
 const getPkgRoot = pkg => resolve(packagesPath, pkg)
 const step = (msg, newline = true) => console.log(chalk.cyan(newline ? '\n' + msg : msg))
 
-// todo 基于monorepo或者单包进行重构
 async function release(version, opts) {
   const pkgOptions = pkg.yunque?.release || {}
   let parentOptions = {}
@@ -53,15 +54,12 @@ async function release(version, opts) {
   let options = { ...opts, ...parentOptions, ...pkgOptions }
   options = {
     ...options,
-    skip: typeof options.skip === 'string' ? options.skip.split(',') : options.skip,
-    name: typeof options.name === 'string' ? options.name.split(',') : options.name
+    skip: [].concat(options.skip),
+    pkgName: [].concat(options.pkgName)
   }
 
-  const { dry, skipTest, skipBuild, skip, skipChangelog } = options
-
-  const dryRun = (bin, args, opts = {}) =>
-    console.log(chalk.blue(`[dryrun] ${bin} ${args.join(' ')}`), opts)
-  const run = dry ? dryRun : exec
+  const { dry, skipTest, skipBuild, skip, skipChangelog, gtp } = options
+  const runIfNotDry = dry ? dryRun : run
 
   if (!version) {
     // no explicit version, offer suggestions
@@ -90,10 +88,13 @@ async function release(version, opts) {
     throw new Error(`invalid target version: ${version}`)
   }
 
+  const _pkgName = pkg.name.replace(/^@(.*?)\//, '')
+  const tag = gtp ? `${_pkgName}@${version}` : `v${version}`
+
   const { yes } = await prompt({
     type: 'confirm',
     name: 'yes',
-    message: `Releasing v${version}. Confirm?`
+    message: `Releasing ${tag}. Confirm?`
   })
 
   if (!yes) {
@@ -136,21 +137,21 @@ async function release(version, opts) {
   const { stdout } = await run('git', ['diff'], { stdio: 'pipe' })
   if (stdout) {
     step('Committing changes...')
-    await run('git', ['add', '-A'])
-    await run('git', ['commit', '-m', `release: v${version}`])
+    await runIfNotDry('git', ['add', '-A'])
+    await runIfNotDry('git', ['commit', '-m', `release: ${tag}`])
   } else {
     console.log('No changes to commit.')
   }
 
   // publish packages
   step('Publishing packages...')
-  await publishPackages(version, run, options)
+  await publishPackages(version, options, runIfNotDry)
 
   // push to GitHub
   step('Pushing to GitHub...')
-  await run('git', ['tag', `v${version}`])
-  await run('git', ['push', 'origin', `refs/tags/v${version}`])
-  await run('git', ['push'])
+  await runIfNotDry('git', ['tag', tag])
+  await runIfNotDry('git', ['push', 'origin', `refs/tags/${tag}`])
+  await runIfNotDry('git', ['push'])
 
   if (dry) {
     console.log(`\nDry run finished - run git diff to see package changes.`)
@@ -181,7 +182,7 @@ function updatePackage(pkgRoot, version, options) {
 }
 
 function updateDeps(pkg, depType, version, options) {
-  const pkgName = options.pkgName || ''
+  const pkgName = options.pkgName
   const pkgPrefix = options.pkgPrefix || ''
   const deps = pkg[depType]
   const reg = new RegExp(`^${pkgPrefix}\/`)
@@ -197,21 +198,20 @@ function updateDeps(pkg, depType, version, options) {
   })
 }
 
-async function publishPackages(version, run, options) {
-  await publishPackage(null, resolve('.'), version, run, options)
+async function publishPackages(version, options, run) {
+  await publishPackage(pkg.name, resolve('.'), version, options, run)
   if (!options.monorepo) return
   for (const p of packages) {
-    await publishPackage(p, getPkgRoot(p), version, run, options)
+    await publishPackage(p, getPkgRoot(p), version, options, run)
   }
 }
 
-async function publishPackage(pkgName, pkgRoot, version, run, options) {
+async function publishPackage(pkgName, pkgRoot, version, options, run) {
   const { skip, tag } = options
   if (skip && skip.includes(pkgName)) {
     return
   }
-  console.log(pkgName, pkgRoot)
-  // todo stop here, by dry
+
   const pkgPath = path.resolve(pkgRoot, 'package.json')
   const pkg = JSON.parse(fs.readFileSync(pkgPath, 'utf-8'))
   if (pkg.private) {

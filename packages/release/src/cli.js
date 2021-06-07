@@ -29,14 +29,26 @@ cli
   .option('--skipChangelog', `[boolean] skip changelog`, {
     default: false
   })
-  .option('--skip [skip]', `monorepo, [string] skip package, such as package1 package1,package2`)
+  .option('--skip [...skip]', `monorepo, [string] skip package, such as package1`, {
+    default: []
+  })
   .option(
-    '--pkgName [pkgName]',
-    `[string] monorepo, the package name included in the updated version, such as package1 package1,package2`
+    '--pkgName [...pkgName]',
+    `[string] monorepo, the package name included in the updated version, such as package1`,
+    {
+      default: []
+    }
   )
   .option(
     '--pkgPrefix [pkgPrefix]',
     `[string] monorepo, the package name prefix included in the updated version, such as @yunque`
+  )
+  .option(
+    '--gtp [gtp]',
+    `[boolean] git tag uses the package name prefix, such as release@1.0.0, default: v1.0.0`,
+    {
+      default: false
+    }
   )
   .option(
     '--extend [extend]',
