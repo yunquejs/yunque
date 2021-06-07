@@ -3,13 +3,45 @@
 ## Install
 ```
 # npm
-npm install -D @yunque/release
+npm install -D @yunquejs/release
 
 # yarn
-yarn add -D @yunque/release
+yarn add -D @yunquejs/release
 ```
 
-## Quick start
+## Quick Start
 ```
 yunque-release
+```
+
+# Publish Tag
+```
+yunque-release --tag next
+```
+
+# Use Package.json
+```json
+"yunque": {
+  "release": {
+    "skipTest": true
+  }
+}
+```
+
+# Extend Package.json
+```
+yunque-release --extend ../../package.json
+```
+```json
+"yunque": {
+  "release": {
+    "skipTest": true,
+    "extend": "../../package.json"
+  }
+}
+```
+
+# Get Help
+```
+yunque-release --help
 ```

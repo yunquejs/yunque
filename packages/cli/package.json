@@ -1,7 +1,7 @@
 {
   "name": "@yunquejs/cli",
   "version": "0.1.1",
-  "description": "@yunque/cli",
+  "description": "@yunquejs/cli",
   "repository": {
     "type": "git",
     "url": "https://github.com/yunquejs/yunque-cli.git"
@@ -35,7 +35,7 @@
     "build:umd": "rollup -c ../../scripts/rollup.config.js",
     "clean": "rm -rf dist",
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx,.vue",
-    "release": "node bin/yunque-release --gtp",
+    "release": "yunque-release --gtp",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 --commit-path ."
   },
   "dependencies": {},
