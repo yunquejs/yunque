@@ -14,12 +14,12 @@ yarn add -D @yunquejs/release
 yunque-release
 ```
 
-# Publish Tag
+## Publish Tag
 ```
 yunque-release --tag next
 ```
 
-# Use Package.json
+## Use Package.json
 ```json
 "yunque": {
   "release": {
@@ -28,7 +28,7 @@ yunque-release --tag next
 }
 ```
 
-# Extend Package.json
+## Extend Package.json
 ```
 yunque-release --extend ../../package.json
 ```
@@ -41,7 +41,7 @@ yunque-release --extend ../../package.json
 }
 ```
 
-# Get Help
+## Get Help
 ```
 yunque-release --help
 ```
