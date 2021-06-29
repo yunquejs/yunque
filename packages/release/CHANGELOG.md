@@ -1,4 +1,9 @@
-## [0.1.3](https://github.com/yunquejs/yunque-cli/compare/0.1.6...0.1.3) (2021-06-07)
+## [0.1.4](https://github.com/yunquejs/yunque-cli/compare/0.1.6...0.1.4) (2021-06-29)
+
+
+### Bug Fixes
+
+* **release:** currentVersion. ([1a32e48](https://github.com/yunquejs/yunque-cli/commit/1a32e4820af2fb3f3a0f4442b0d92a3ff11dc9c1))
 
 
 ### Features
