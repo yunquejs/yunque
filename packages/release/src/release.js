@@ -11,7 +11,7 @@ const execa = require('execa')
 
 const cwd = process.cwd()
 const resolve = (...args) => path.resolve(cwd, ...args)
-const pkg = require('../package.json')
+const pkg = require(resolve('package.json'))
 const currentVersion = pkg.version
 
 const inc = i => semver.inc(currentVersion, i)
