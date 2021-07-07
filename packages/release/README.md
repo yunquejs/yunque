@@ -1,4 +1,5 @@
 # @yunquejs/release
+npm package version management，include build、test、push github、npm publish
 
 ## Install
 ```
