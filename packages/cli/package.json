@@ -13,7 +13,7 @@
   "bugs": {
     "url": "https://github.com/yunquejs/yunque/issues"
   },
-  "homepage": "https://github.com/yunquejs/yunque#readme",
+  "homepage": "https://github.com/yunquejs/yunque/tree/main/packages/cli#readme",
   "author": "君惜",
   "license": "MIT",
   "bin": {

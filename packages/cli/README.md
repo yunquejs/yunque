@@ -13,7 +13,7 @@ pnpm add -g @yunquejs/cli
 
 ```bash
 yunque my-app
-# 先选择模版
+# Choose a template first
 yunque vite-vue-template my-app
 ```
 
