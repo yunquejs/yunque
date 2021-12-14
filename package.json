@@ -1,23 +1,23 @@
 {
-  "name": "yunque-cli",
+  "name": "yunque",
   "version": "0.1.1",
-  "description": "yunque-cli",
+  "description": "Simple scaffolding tools.",
   "private": true,
   "workspaces": [
     "packages/*"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/yunquejs/yunque-cli.git"
+    "url": "https://github.com/yunquejs/yunque.git"
   },
   "keywords": [
     "yunque",
     "cli"
   ],
   "bugs": {
-    "url": "https://github.com/yunquejs/yunque-cli/issues"
+    "url": "https://github.com/yunquejs/yunque/issues"
   },
-  "homepage": "https://github.com/yunquejs/yunque-cli#readme",
+  "homepage": "https://github.com/yunquejs/yunque#readme",
   "author": "君惜",
   "license": "MIT",
   "scripts": {

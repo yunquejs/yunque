@@ -1,19 +1,19 @@
 {
   "name": "@yunquejs/cli",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "@yunquejs/cli",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yunquejs/yunque-cli.git"
+    "url": "https://github.com/yunquejs/yunque.git"
   },
   "keywords": [
     "yunque",
     "cli"
   ],
   "bugs": {
-    "url": "https://github.com/yunquejs/yunque-cli/issues"
+    "url": "https://github.com/yunquejs/yunque/issues"
   },
-  "homepage": "https://github.com/yunquejs/yunque-cli#readme",
+  "homepage": "https://github.com/yunquejs/yunque#readme",
   "author": "君惜",
   "license": "MIT",
   "bin": {
@@ -29,26 +29,34 @@
   "unpkg": "dist/index.min.js",
   "scripts": {
     "test": "jest",
-    "dev": "tsup src/index.ts --watch src",
-    "build": "yarn clean && run-p build:bundle",
-    "build:bundle": "tsup src/index.ts --dts --format cjs,esm",
-    "build:umd": "rollup -c ../../scripts/rollup.config.js",
+    "dev": "tsup src/index.ts src/cli.ts --watch src",
+    "build": "pnpm clean && run-p build:bundle",
+    "build:bundle": "tsup src/index.ts src/cli.ts --dts --format cjs,esm",
     "clean": "rm -rf dist",
     "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx,.vue",
     "release": "yunque-release --gtp",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 --commit-path ."
   },
-  "dependencies": {},
-  "devDependencies": {},
-  "gitHooks": {
-    "pre-commit": "lint-staged",
-    "commit-msg": "node scripts/verify-commit.js"
+  "dependencies": {
+    "@egoist/extract-zip": "^2.0.1",
+    "axios": "^0.21.1",
+    "cac": "^6.7.3",
+    "cross-spawn": "^7.0.3",
+    "enquirer": "^2.3.6",
+    "exception-error": "^1.0.1",
+    "execa": "^5.0.1",
+    "hash-sum": "^2.0.0",
+    "kolorist": "^1.4.1",
+    "leven": "^3.1.0",
+    "majo": "^0.10.1",
+    "move-file": "^2.1.0",
+    "ora": "^5.4.1",
+    "xlogger-pretty": "^1.1.1"
   },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,vue}": [
-      "eslint --fix",
-      "git add"
-    ]
+  "devDependencies": {
+    "@types/cross-spawn": "^6.0.2",
+    "@types/hash-sum": "^1.0.0",
+    "@yunquejs/release": "workspace:*"
   },
   "engines": {
     "node": ">=12.0.0"
