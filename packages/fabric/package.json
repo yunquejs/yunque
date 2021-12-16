@@ -1,0 +1,59 @@
+{
+  "name": "@yunquejs/fabric",
+  "version": "0.1.0",
+  "description": "@yunquejs/fabric",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yunquejs/yunque.git"
+  },
+  "keywords": [
+    "yunque",
+    "cli",
+    "release"
+  ],
+  "bugs": {
+    "url": "https://github.com/yunquejs/yunque/issues"
+  },
+  "homepage": "https://github.com/yunquejs/yunque/tree/main/packages/fabric#readme",
+  "author": "君惜",
+  "license": "MIT",
+  "bin": {
+    "verify-commit": "bin/verify-commit.js"
+  },
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "scripts": {
+    "test": "jest",
+    "build": "pnpm clean && tsc -p tsconfig.json && pnpm copyfiles",
+    "copyfiles": "copyfiles -u 1 src/.prettierignore src/.editorconfig dist",
+    "clean": "rm -rf dist",
+    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx,.vue",
+    "release": "yunque-release --gtp",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 --commit-path ."
+  },
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.17.0",
+    "@typescript-eslint/parser": "^4.17.0",
+    "vue-eslint-parser": "^7.6.0",
+    "eslint": "^7.21.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-vue": "^7.7.0",
+    "eslint-plugin-jsx-a11y": "6.5.1",
+    "eslint-plugin-react": "7.27.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "prettier": "^2.2.1",
+    "chalk": "^4.1.0",
+    "yorkie": "^2.0.0"
+  },
+  "devDependencies": {
+    "@yunquejs/release": "workspace:*"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}

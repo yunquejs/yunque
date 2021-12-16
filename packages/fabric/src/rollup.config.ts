@@ -1,3 +1,4 @@
+// @ts-nocheck
 import path from 'path'
 import buble from '@rollup/plugin-buble'
 import commonjs from '@rollup/plugin-commonjs'
@@ -7,6 +8,7 @@ import json from '@rollup/plugin-json'
 import replace from '@rollup/plugin-replace'
 import typescript from 'rollup-plugin-typescript2'
 import { terser } from 'rollup-plugin-terser'
+// @ts-ignore
 import pkg from '../package.json'
 
 const moduleName = pkg.name
@@ -73,13 +75,31 @@ export function genConfig(input = 'src/index.ts', name) {
 export default genConfig()
 
 // if use babel, need to create src/.babelrc.json
-// {
-//   "presets": [
-//   [
-//     "@babel/env",
-//     {
-//       "modules": false
-//     }
-//   ]
-// ]
-// }
+/*{
+  presets: [
+    [
+      '@babel/env',
+      {
+        modules: false
+      }
+    ]
+  ]
+}*/
+
+// if use rollup and babel, need to install these packages
+/*
+{
+  "rollup": "^2.22.1",
+  "rollup-plugin-terser": "^6.1.0",
+  "rollup-plugin-typescript2": "^0.27.2",
+  "@rollup/plugin-babel": "^5.1.0",
+  "@rollup/plugin-buble": "^0.21.3",
+  "@rollup/plugin-commonjs": "^14.0.0",
+  "@rollup/plugin-json": "^4.1.0",
+  "@rollup/plugin-node-resolve": "^8.4.0",
+  "@rollup/plugin-replace": "^2.3.3",
+  "@babel/core": "^7.10.5",
+  "@babel/plugin-transform-runtime": "^7.10.5",
+  "@babel/preset-env": "^7.10.4",
+  "tslib": "^2.3.1",
+}*/
