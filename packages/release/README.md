@@ -8,6 +8,9 @@ npm install -D @yunquejs/release
 
 # yarn
 yarn add -D @yunquejs/release
+
+# pnpm
+pnpm add -D @yunquejs/release
 ```
 
 ## Quick Start

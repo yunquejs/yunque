@@ -1,7 +1,7 @@
 {
   "name": "@yunquejs/cli",
   "version": "0.1.0",
-  "description": "@yunquejs/cli",
+  "description": "A cli for creating front-end projects, encapsulating common templates, improving development efficiency.",
   "repository": {
     "type": "git",
     "url": "https://github.com/yunquejs/yunque.git"

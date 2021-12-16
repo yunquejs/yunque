@@ -1,7 +1,7 @@
 {
   "name": "@yunquejs/fabric",
   "version": "0.1.0",
-  "description": "@yunquejs/fabric",
+  "description": "A collection of configuration files containing prettier, eslint, rollup.",
   "repository": {
     "type": "git",
     "url": "https://github.com/yunquejs/yunque.git"

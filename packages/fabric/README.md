@@ -1,48 +1,40 @@
 # @yunquejs/fabric
-npm package version management，include build、test、push github、npm publish
+A collection of configuration files containing prettier, eslint, rollup.
 
 ## Install
 ```
 # npm
-npm install -D @yunquejs/release
+npm install -D @yunquejs/fabric
 
 # yarn
-yarn add -D @yunquejs/release
+yarn add -D @yunquejs/fabric
+
+# pnpm
+yarn add -D @yunquejs/fabric
 ```
 
-## Quick Start
-```
-yunque-release
-```
+## Usage
 
-## Publish Tag
-```
-yunque-release --tag next
-```
-
-## Use Package.json
+git `verify-commit`
 ```json
-"yunque": {
-  "release": {
-    "skipTest": true
-  }
+"gitHooks": {
+  "pre-commit": "lint-staged",
+  "commit-msg": "verify-commit"
 }
 ```
 
-## Extend Package.json
-```
-yunque-release --extend ../../package.json
-```
-```json
-"yunque": {
-  "release": {
-    "skipTest": true,
-    "extend": "../../package.json"
-  }
+in `.eslintrc.js`
+```js
+module.exports = {
+  extends: [require.resolve('@yunquejs/fabric/dist/eslint')],
 }
 ```
 
-## Get Help
-```
-yunque-release --help
+in `.prettierrc.js`
+```js
+const prettier = require('@yunquejs/fabric/dist/prettier');
+
+module.exports = {
+  ...prettier,
+}
 ```
