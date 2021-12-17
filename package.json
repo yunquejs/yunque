@@ -21,7 +21,11 @@
   "author": "君惜",
   "license": "MIT",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "copyfiles": "node scripts/copyfiles.js",
+    "docs:dev": "pnpm copyfiles && vitepress dev docs",
+    "docs:build": "pnpm copyfiles && vitepress build docs",
+    "docs:serve": "vitepress serve docs"
   },
   "dependencies": {},
   "devDependencies": {
@@ -43,7 +47,8 @@
     "typescript": "^4.2.3",
     "chalk": "^4.1.0",
     "yorkie": "^2.0.0",
-    "copyfiles": "^2.4.1"
+    "copyfiles": "^2.4.1",
+    "vitepress": "^0.20.9"
   },
   "gitHooks": {
     "pre-commit": "lint-staged",
