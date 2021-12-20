@@ -29,6 +29,7 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@yunquejs/release": "workspace:*",
     "@types/jest": "^26.0.12",
     "@types/node": "^14.14.39",
     "@typescript-eslint/eslint-plugin": "^4.17.0",
