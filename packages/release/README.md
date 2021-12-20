@@ -14,6 +14,8 @@ pnpm add -D @yunquejs/release
 ```
 
 ## Quick Start
+Publishing depends on `yarn`
+
 ```
 yunque-release
 ```
