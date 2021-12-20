@@ -10,7 +10,7 @@ npm install -D @yunquejs/fabric
 yarn add -D @yunquejs/fabric
 
 # pnpm
-yarn add -D @yunquejs/fabric
+pnpm add -D @yunquejs/fabric
 ```
 
 ## Usage
