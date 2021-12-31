@@ -1,0 +1,15 @@
+{
+  "name": "yunque-docs",
+  "version": "0.1.0",
+  "private": "true",
+  "scripts": {
+    "copyfiles": "node ../scripts/copyfiles.js",
+    "docs:dev": "pnpm copyfiles && vitepress dev",
+    "docs:build": "pnpm copyfiles && vitepress build",
+    "docs:serve": "vitepress serve"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "vitepress": "^0.20.9"
+  }
+}

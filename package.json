@@ -21,15 +21,12 @@
   "author": "君惜",
   "license": "MIT",
   "scripts": {
-    "test": "jest",
-    "copyfiles": "node scripts/copyfiles.js",
-    "docs:dev": "pnpm copyfiles && vitepress dev docs",
-    "docs:build": "pnpm copyfiles && vitepress build docs",
-    "docs:serve": "vitepress serve docs"
+    "test": "jest"
   },
   "dependencies": {},
   "devDependencies": {
     "@yunquejs/release": "workspace:*",
+    "@yunquejs/fabric": "workspace:*",
     "@types/jest": "^26.0.12",
     "@types/node": "^14.14.39",
     "@typescript-eslint/eslint-plugin": "^4.17.0",
@@ -48,12 +45,11 @@
     "typescript": "^4.2.3",
     "chalk": "^4.1.0",
     "yorkie": "^2.0.0",
-    "copyfiles": "^2.4.1",
-    "vitepress": "^0.20.9"
+    "copyfiles": "^2.4.1"
   },
   "gitHooks": {
     "pre-commit": "lint-staged",
-    "commit-msg": "node scripts/verify-commit.js"
+    "commit-msg": "verify-commit"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,vue}": [
