@@ -6,7 +6,7 @@ export default {
   themeConfig: {
     repo: 'yunquejs/yunque',
     docsDir: 'docs',
-    docsBranch: 'gh-pages',
+    docsBranch: 'main',
     editLinks: true,
     editLinkText: 'Edit this page on GitHub',
     lastUpdated: 'Last Updated',
