@@ -49,7 +49,7 @@
   },
   "gitHooks": {
     "pre-commit": "lint-staged",
-    "commit-msg": "verify-commit"
+    "commit-msg": "node scripts/verify-commit.js"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,vue}": [
