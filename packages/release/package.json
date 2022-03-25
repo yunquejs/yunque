@@ -1,6 +1,6 @@
 {
   "name": "@yunquejs/release",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "npm package version management，include build、test、push github、npm publish",
   "repository": {
     "type": "git",
