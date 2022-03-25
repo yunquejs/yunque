@@ -1,4 +1,4 @@
-## [0.1.7](https://github.com/yunquejs/yunque/compare/0.1.6...0.1.7) (2022-03-25)
+## 0.1.8 (2022-03-25)
 
 
 ### Bug Fixes
@@ -10,16 +10,8 @@
 
 * @yunque/release 0.1.0. ([0f247fb](https://github.com/yunquejs/yunque/commit/0f247fbf7ba21591297985b54fe430f79755cc29))
 * @yunque/release 0.2.0. ([14e2e84](https://github.com/yunquejs/yunque/commit/14e2e84d689a77bed8f35c3235174afdd83c5594))
-* **fabric:** update eslint config, integrate conventional-changelog ([74495bd](https://github.com/yunquejs/yunque/commit/74495bd5b3635d26b5fd2096692dede8c4c20f34))
-
-
-
-## [0.1.6](https://github.com/yunquejs/yunque/compare/03e333969ad17070740497a48e727a0ea92197f9...0.1.6) (2021-06-07)
-
-
-### Features
-
 * @yunque/release wip. ([03e3339](https://github.com/yunquejs/yunque/commit/03e333969ad17070740497a48e727a0ea92197f9))
+* **fabric:** update eslint config, integrate conventional-changelog ([74495bd](https://github.com/yunquejs/yunque/commit/74495bd5b3635d26b5fd2096692dede8c4c20f34))
 
 
 
