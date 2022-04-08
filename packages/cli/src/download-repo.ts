@@ -5,7 +5,7 @@ import spawn from 'cross-spawn'
 import axios from 'axios'
 import extractZip from '@egoist/extract-zip'
 import { logger, error, move } from './utils'
-import { Generator, RepoGenerator } from './interface'
+import type { Generator, RepoGenerator } from './interface'
 
 export function getUrl(generator: RepoGenerator, clone?: boolean): string {
   let url = ''
@@ -81,7 +81,7 @@ export async function downloadRepo(
       url,
       outDir,
       '--depth=1',
-      generator.version === 'master' ? '' : `--branch=${generator.version}`
+      ...(generator.version === 'master' ? [] : [`--branch=${generator.version}`])
     ])
     if (cmd.status !== 0) {
       throw error(`Failed to download repo: ${cmd.output}\n`)

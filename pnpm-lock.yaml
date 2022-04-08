@@ -40,7 +40,7 @@ importers:
       '@types/cross-spawn': ^6.0.2
       '@types/hash-sum': ^1.0.0
       axios: ^0.21.1
-      cac: ^6.7.3
+      cac: ^6.7.12
       cross-spawn: ^7.0.3
       enquirer: ^2.3.6
       exception-error: ^1.0.1
@@ -103,7 +103,7 @@ importers:
 
   packages/release:
     specifiers:
-      cac: ^6.7.3
+      cac: ^6.7.12
       enquirer: ^2.3.6
       execa: ^5.1.0
       kolorist: ^1.4.1

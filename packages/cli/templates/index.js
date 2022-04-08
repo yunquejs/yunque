@@ -16,12 +16,12 @@ export default [
   },
   {
     name: 'vite-react-template',
-    desc: '一个后台管理系统模版, 使用 Vite2 + React17 + Redux4 + React-Router6 + Windcss + Typescript + Ant-Design + Mockjs.',
+    desc: '一个后台管理系统模版, 使用 Vite2 + React17 + Redux4 + React-Router6 + Unocss + Typescript + Ant-Design + Mockjs.',
     repo: 'xinlei3166/vite-react-template'
   },
   {
-    name: 'umi-windicss-template',
-    desc: '一个后台管理系统模版, 使用 Umi + Windcss + Typescript + Ant-Design + Mockjs.',
-    repo: 'xinlei3166/umi-windicss-template'
+    name: 'umi-unocss-template',
+    desc: '一个后台管理系统模版, 使用 Umi + Unocss + Typescript + Ant-Design + Mockjs.',
+    repo: 'xinlei3166/umi-unocss-template'
   }
 ]
