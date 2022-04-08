@@ -19,13 +19,13 @@ yunque vite-vue-template my-app
 
 ## Templates
 
-| name                   | description                                                  |
-| ---------------------- | ------------------------------------------------------------ |
-| ts-template            | 一个 typescript 项目模版.                                    |
-| vite-vue-template      | 一个后台管理系统模版, 使用 Vite2 + Vue3 + Vuex + Vue-Router + TypeScript + Ant-Design-Vue + Mockjs |
-| vite-electron-template | 一个 Electron 模版, 使用 Vite2 + Vue3 + Electron12.          |
-| vite-react-template    | 一个后台管理系统模版, 使用 Vite2 + React17 + Redux4 + React-Router6 + Windcss + Typescript + Ant-Design + Mockjs. |
-| umi-windicss-template  | 一个后台管理系统模版, 使用 Umi + Windcss + Typescript + Ant-Design + Mockjs. |
+| name                   | description                                                                                          |
+|------------------------|------------------------------------------------------------------------------------------------------|
+| ts-template            | 一个 typescript 项目模版.                                                                                  |
+| vite-vue-template      | 一个后台管理系统模版, 使用 Vite2 + Vue3 + Vuex + Vue-Router + TypeScript + Ant-Design-Vue + Mockjs               |
+| vite-electron-template | 一个 Electron 模版, 使用 Vite2 + Vue3 + Electron12.                                                        |
+| vite-react-template    | 一个后台管理系统模版, 使用 Vite2 + React17 + Redux4 + React-Router6 + Unocss + Typescript + Ant-Design + Mockjs. |
+| umi-unocss-template    | 一个后台管理系统模版, 使用 Umi + Unocss + Typescript + Ant-Design + Mockjs.                                      |
 
 ## Adding a Template
 1.Add the template information in the `templates/index.js` file.
@@ -50,10 +50,11 @@ yunque xinlei3166/vite-vue-template my-app
 yunque github:xinlei3166/vite-vue-template my-app
 ```
 
-Version / Tag
+Branch / Version / Tag
 
 ```bash
-yunque xinlei3166/vite-vue-template/tree/v1.0.0 my-app
+yunque xinlei3166/vite-vue-template#main my-app
+yunque xinlei3166/vite-vue-template#v1.0.0 my-app
 ```
 
 ## View template list
