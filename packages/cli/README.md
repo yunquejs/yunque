@@ -15,6 +15,8 @@ pnpm add -g @yunquejs/cli
 yunque my-app
 # Choose a template first
 yunque vite-vue-template my-app
+# alias
+yq my-app
 ```
 
 ## Templates
