@@ -3,9 +3,8 @@
   "version": "0.1.0",
   "private": "true",
   "scripts": {
-    "copyfiles": "node ../scripts/copyfiles.js",
-    "docs:dev": "pnpm copyfiles && vitepress dev",
-    "docs:build": "pnpm copyfiles && vitepress build",
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
     "docs:serve": "vitepress serve"
   },
   "dependencies": {},

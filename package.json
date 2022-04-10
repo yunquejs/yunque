@@ -18,6 +18,7 @@
   "author": "君惜",
   "license": "MIT",
   "scripts": {
+    "copyfiles": "node ./scripts/copyfiles.js",
     "test": "jest"
   },
   "dependencies": {},
@@ -38,7 +39,7 @@
     "yorkie-pnpm": "^2.0.1"
   },
   "gitHooks": {
-    "pre-commit": "lint-staged",
+    "pre-commit": "lint-staged && pnpm copyfiles",
     "commit-msg": "verify-commit"
   },
   "lint-staged": {

@@ -1,10 +1,10 @@
 const path = require('path')
 const fs = require('fs')
 
-fs.copyFileSync('../README.md', './index.md')
+fs.copyFileSync('./README.md', './docs/index.md')
 
-const pkgs = fs.readdirSync(path.join(process.cwd(), '../packages')).filter(x => !x.startsWith('.'))
+const pkgs = fs.readdirSync('./packages').filter(x => !x.startsWith('.'))
 
 for (const pkg of pkgs) {
-  fs.copyFileSync(`../packages/${pkg}/README.md`, `./${pkg}.md`)
+  fs.copyFileSync(`./packages/${pkg}/README.md`, `./docs/${pkg}.md`)
 }
