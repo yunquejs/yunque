@@ -18,7 +18,8 @@
   "author": "君惜",
   "license": "MIT",
   "bin": {
-    "yunque-release": "bin/yunque-release.js"
+    "yunque-release": "bin/yunque-release.js",
+    "yqr": "bin/yunque-release.js"
   },
   "files": [
     "bin",

@@ -18,6 +18,8 @@ Publishing depends on `yarn`
 
 ```
 yunque-release
+# alias
+yqr
 ```
 
 ## Publish Tag
