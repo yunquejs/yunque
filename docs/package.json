@@ -9,6 +9,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "vitepress": "^0.20.9"
+    "vitepress": "^1.0.0-alpha.65"
   }
 }

@@ -2,7 +2,7 @@
 npm package version management，include build、test、push github、npm publish
 
 ## Install
-```
+```bash
 # npm
 npm install -D @yunquejs/release
 

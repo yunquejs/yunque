@@ -2,7 +2,7 @@
 A collection of configuration files containing prettier, eslint, rollup.
 
 ## Install
-```
+```bash
 # npm
 npm install -D @yunquejs/fabric
 

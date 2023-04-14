@@ -50,6 +50,14 @@
   "engines": {
     "node": ">=12.0.0"
   },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@algolia/client-search",
+        "typescript"
+      ]
+    }
+  },
   "yunque": {
     "release": {
       "pkgName": "yunque",

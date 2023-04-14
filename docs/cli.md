@@ -4,8 +4,13 @@ A cli for creating front-end projects, encapsulating common templates, improving
 ## Install
 
 ```bash
+# npm
 npm install -g @yunquejs/cli
+
+# yarn
 yarn global add @yunquejs/cli
+
+# pnpm
 pnpm add -g @yunquejs/cli
 ```
 
