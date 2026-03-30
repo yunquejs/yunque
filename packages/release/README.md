@@ -1,7 +1,9 @@
 # @yunquejs/release
+
 npm package version management，include build、test、push github、npm publish
 
 ## Install
+
 ```bash
 # npm
 npm install -D @yunquejs/release
@@ -14,6 +16,7 @@ pnpm add -D @yunquejs/release
 ```
 
 ## Quick Start
+
 Publishing depends on `yarn`
 
 ```
@@ -23,11 +26,13 @@ yqr
 ```
 
 ## Publish Tag
+
 ```
 yunque-release --tag next
 ```
 
 ## Use Package.json
+
 ```json
 "yunque": {
   "release": {
@@ -37,9 +42,11 @@ yunque-release --tag next
 ```
 
 ## Extend Package.json
+
 ```
 yunque-release --extend ../../package.json
 ```
+
 ```json
 "yunque": {
   "release": {
@@ -50,6 +57,7 @@ yunque-release --extend ../../package.json
 ```
 
 ## Get Help
+
 ```
 yunque-release --help
 ```

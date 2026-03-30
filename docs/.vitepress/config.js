@@ -11,9 +11,7 @@ export default {
     editLinkText: 'Edit this page on GitHub',
     lastUpdated: 'Last Updated',
 
-    nav: [
-      { text: 'Guide', link: '/', activeMatch: '^/' }
-    ],
+    nav: [{ text: 'Guide', link: '/', activeMatch: '^/' }],
 
     sidebar: {
       '/': getGuideSidebar()
@@ -26,7 +24,6 @@ function getGuideSidebar() {
     { text: 'What is yunque?', link: '/' },
     { text: '@yunquejs/cli', link: '/cli' },
     { text: '@yunquejs/release', link: '/release' },
-    { text: '@yunquejs/fabric', link: '/fabric' },
+    { text: '@yunquejs/fabric', link: '/fabric' }
   ]
 }
-

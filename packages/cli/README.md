@@ -1,4 +1,5 @@
 # @yunquejs/cli
+
 A cli for creating front-end projects, encapsulating common templates, improving development efficiency.
 
 ## Install
@@ -26,15 +27,16 @@ yq my-app
 
 ## Templates
 
-| name                   | description                                                                                          |
-|------------------------|------------------------------------------------------------------------------------------------------|
-| ts-template            | 一个 typescript 项目模版.                                                                                  |
-| vite-vue-template      | 一个后台管理系统模版, 使用 Vite2 + Vue3 + Vuex + Vue-Router + TypeScript + Ant-Design-Vue + Mockjs               |
-| vite-electron-template | 一个 Electron 模版, 使用 Vite2 + Vue3 + Electron12.                                                        |
-| vite-react-template    | 一个后台管理系统模版, 使用 Vite2 + React17 + Redux4 + React-Router6 + Unocss + Typescript + Ant-Design + Mockjs. |
-| umi-unocss-template    | 一个后台管理系统模版, 使用 Umi + Unocss + Typescript + Ant-Design + Mockjs.                                      |
+| name | description |
+| --- | --- |
+| ts-template | 一个 typescript 项目模版. |
+| vite-vue-template | 一个后台管理系统模版, 使用 Vite2 + Vue3 + Vuex + Vue-Router + TypeScript + Ant-Design-Vue + Mockjs |
+| vite-electron-template | 一个 Electron 模版, 使用 Vite2 + Vue3 + Electron12. |
+| vite-react-template | 一个后台管理系统模版, 使用 Vite2 + React17 + Redux4 + React-Router6 + Unocss + Typescript + Ant-Design + Mockjs. |
+| umi-unocss-template | 一个后台管理系统模版, 使用 Umi + Unocss + Typescript + Ant-Design + Mockjs. |
 
 ## Adding a Template
+
 1.Add the template information in the `templates/index.js` file.
 
 2.Create a repo on `github`, the repo name is the same as the template name.
@@ -50,10 +52,11 @@ yq my-app
 ```
 
 ## Git Repo Support
+
 Git Repo `https://github.com/xinlei3166/vite-vue-template`
 
 ```bash
-yunque xinlei3166/vite-vue-template my-app 
+yunque xinlei3166/vite-vue-template my-app
 yunque github:xinlei3166/vite-vue-template my-app
 ```
 
@@ -77,4 +80,5 @@ yunque --help
 ```
 
 ## Thanks
+
 [@yunquejs/cli](https://github.com/yunquejs/yunque/tree/main/packages/cli) based on [sao](https://github.com/saojs/sao)

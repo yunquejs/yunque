@@ -29,11 +29,10 @@
   "module": "dist/index.mjs",
   "scripts": {
     "test": "jest",
-    "dev": "tsup src/index.js src/cli.js --watch src",
+    "dev": "tsdown src/index.js src/cli.js --watch src",
     "build": "pnpm clean && run-p build:bundle",
-    "build:bundle": "tsup src/index.js src/cli.js --format cjs,esm",
+    "build:bundle": "tsdown src/index.js src/cli.js --dts --format esm --format cjs",
     "clean": "rm -rf dist",
-    "lint": "eslint --fix --ext .js,.jsx,.ts,.tsx,.vue",
     "release": "yunque-release --gtp",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 --commit-path ."
   },
@@ -46,6 +45,6 @@
   },
   "devDependencies": {},
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=16.0.0"
   }
 }

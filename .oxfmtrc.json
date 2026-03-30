@@ -1,0 +1,24 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 100,
+  "semi": false,
+  "singleQuote": true,
+  "proseWrap": "never",
+  "arrowParens": "avoid",
+  "bracketSpacing": true,
+  "trailingComma": "none",
+  "htmlWhitespaceSensitivity": "ignore",
+  "vueIndentScriptAndStyle": false,
+  "embeddedLanguageFormatting": "auto",
+  "jsxBracketSameLine": false,
+  "jsxSingleQuote": false,
+  "sortPackageJson": false,
+  "ignorePatterns": [
+    "dist",
+    "public",
+    "node_modules",
+    "iconfont.js",
+    "packages/docs/.vitepress/cache",
+    "components.d.ts"
+  ]
+}
