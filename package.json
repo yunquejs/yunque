@@ -1,22 +1,22 @@
 {
   "name": "yunque",
   "version": "0.1.1",
-  "description": "Simple scaffolding tools.",
   "private": true,
+  "description": "Simple scaffolding tools.",
+  "keywords": [
+    "cli",
+    "yunque"
+  ],
+  "homepage": "https://github.com/yunquejs/yunque#readme",
+  "bugs": {
+    "url": "https://github.com/yunquejs/yunque/issues"
+  },
+  "license": "MIT",
+  "author": "君惜",
   "repository": {
     "type": "git",
     "url": "https://github.com/yunquejs/yunque.git"
   },
-  "keywords": [
-    "yunque",
-    "cli"
-  ],
-  "bugs": {
-    "url": "https://github.com/yunquejs/yunque/issues"
-  },
-  "homepage": "https://github.com/yunquejs/yunque#readme",
-  "author": "君惜",
-  "license": "MIT",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "prepare": "simple-git-hooks",
@@ -35,8 +35,8 @@
     "copyfiles": "^2.4.1",
     "lint-staged": "^15.2.2",
     "npm-run-all": "^4.1.5",
-    "oxfmt": "^0.42.0",
-    "oxlint": "^1.57.0",
+    "oxfmt": "^0.45.0",
+    "oxlint": "^1.60.0",
     "picocolors": "latest",
     "simple-git-hooks": "latest",
     "tsdown": "^0.21.7",
@@ -50,7 +50,7 @@
   },
   "lint-staged": {
     "*": [
-      "oxlint --fix",
+      "oxlint --fix --no-error-on-unmatched-pattern",
       "oxfmt --no-error-on-unmatched-pattern"
     ]
   },
