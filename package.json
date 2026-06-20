@@ -39,6 +39,7 @@
     "simple-git-hooks": "latest",
     "tsx": "latest",
     "typescript": "^6.0.3",
+    "vite": "catalog:",
     "vite-plus": "catalog:",
     "vitest": "catalog:"
   },
