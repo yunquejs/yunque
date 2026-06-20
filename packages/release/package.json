@@ -28,7 +28,6 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "scripts": {
-    "test": "jest",
     "dev": "vp pack src/index.js src/cli.js --watch src",
     "build": "pnpm clean && run-p build:bundle",
     "build:bundle": "vp pack src/index.js src/cli.js --dts --format esm --format cjs",

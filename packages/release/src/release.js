@@ -7,7 +7,7 @@ const path = require('path')
 const chalk = require('kolorist')
 const semver = require('semver')
 const { prompt } = require('enquirer')
-const execa = require('execa')
+const { execa } = require('execa')
 
 const cwd = process.cwd()
 const resolve = (...args) => path.resolve(cwd, ...args)
@@ -15,7 +15,6 @@ const pkg = require(resolve('package.json'))
 const currentVersion = pkg.version
 
 const inc = i => semver.inc(currentVersion, i)
-const bin = name => resolve('../node_modules/.bin/', name)
 const run = (bin, args, opts = {}) => execa(bin, args, { stdio: 'inherit', ...opts })
 const dryRun = (bin, args, opts = {}) =>
   console.log(chalk.blue(`[dryrun] ${bin} ${args.join(' ')}`), opts)
@@ -104,8 +103,7 @@ async function release(version, opts) {
   // run test before release
   step('Running test...')
   if (!skipTest && !dry) {
-    await run(bin('jest'), ['--clearCache'])
-    await run('yarn', ['test', '--bail'])
+    await run('vp', ['test', 'run'])
   } else {
     console.log(`(skipped test)`)
   }
@@ -117,10 +115,14 @@ async function release(version, opts) {
   // build all packages with types
   step('Building all packages...')
   if (!skipBuild && !dry) {
-    await run('yarn', ['build'])
+    const buildArgs = ['run', 'build']
+    if (options.monorepo) {
+      buildArgs.push('-r')
+    }
+    await run('vp', buildArgs)
     // test generated dts files
     // step('Verifying type declarations...')
-    // await run('yarn', ['test-dts-only'])
+    // await run('vp', ['run', 'test-dts-only'])
   } else {
     console.log(`(skipped build)`)
   }
@@ -128,7 +130,7 @@ async function release(version, opts) {
   // generate changelog
   step('Changelog...')
   if (!skipChangelog && !dry) {
-    await run(`yarn`, ['changelog'])
+    await run('vp', ['run', 'changelog'])
   } else {
     console.log(`(skipped changelog)`)
   }
@@ -185,7 +187,7 @@ function updateDeps(pkg, depType, version, options) {
   const pkgName = options.pkgName
   const pkgPrefix = options.pkgPrefix || ''
   const deps = pkg[depType]
-  const reg = new RegExp(`^${pkgPrefix}\/`)
+  const reg = new RegExp(`^${pkgPrefix}/`)
   if (!deps) return
   Object.keys(deps).forEach(dep => {
     if (
@@ -220,19 +222,12 @@ async function publishPackage(pkgName, pkgRoot, version, options, run) {
 
   step(`Publishing ${pkgName}...`)
 
-  const publicArgs = [
-    'publish',
-    '--no-git-tag-version',
-    '--new-version',
-    version,
-    '--access',
-    'public'
-  ]
+  const publicArgs = ['pm', 'publish', '--access', 'public', '--no-git-checks']
   if (tag) {
-    publicArgs.push(`--tag`, tag)
+    publicArgs.push('--tag', tag)
   }
   try {
-    await run('yarn', publicArgs, {
+    await run('vp', publicArgs, {
       cwd: pkgRoot,
       stdio: 'pipe'
     })

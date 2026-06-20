@@ -17,7 +17,11 @@ pnpm add -D @yunquejs/release
 
 ## Quick Start
 
-Publishing depends on `yarn`
+Publishing depends on [Vite+](https://viteplus.dev/guide/) (`vp`). VP automatically detects the project's package manager.
+
+```bash
+vp install -D @yunquejs/release
+```
 
 ```
 yunque-release
