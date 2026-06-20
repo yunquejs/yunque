@@ -1,21 +1,28 @@
-// Invoked on the commit-msg git hook by yorkie.
+// Invoked on the commit-msg git hook by simple-git-hooks.
 
-const chalk = require('chalk')
-const msgPath = process.env.GIT_PARAMS
-const msg = require('fs').readFileSync(msgPath, 'utf-8').trim()
+import { readFileSync } from 'node:fs'
+import colors from 'picocolors'
 
+// get $1 from commit-msg script
+const msgPath = process.argv[2]
+const msg = readFileSync(msgPath, 'utf-8').trim()
+
+// Merge branch
+const mergeRE = /^Merge branch.*/
 const commitRE =
-  /^(revert: )?(feat|fix|docs|dx|style|refactor|perf|test|workflow|build|ci|chore|types|wip|release)(\(.+\))?: .{1,50}/
+  /^(revert: )?(feat|fix|docs|style|refactor|perf|test|chore|revert|release)(\(.+\))?: .{1,50}/
 
-if (!commitRE.test(msg)) {
+if (!mergeRE.test(msg) && !commitRE.test(msg)) {
   console.log()
   console.error(
-    `  ${chalk.bgRed.white(' ERROR ')} ${chalk.red(`invalid commit message format.`)}\n\n` +
-      chalk.red(
+    `  ${colors.bgRed(colors.white(' ERROR '))} ${colors.red(
+      `invalid commit message format.`
+    )}\n\n` +
+      colors.red(
         `  Proper commit message format is required for automated changelog generation. Examples:\n\n`
       ) +
-      `    ${chalk.green(`feat(compiler): add 'comments' option`)}\n` +
-      `    ${chalk.green(`fix(v-model): handle events on blur (close #28)`)}\n`
+      `    ${colors.green(`feat: add 'comments' option`)}\n` +
+      `    ${colors.green(`fix: handle events on blur (close #28)`)}\n`
   )
   process.exit(1)
 }

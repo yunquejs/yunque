@@ -1,22 +1,20 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "CommonJS",
-    "moduleResolution": "node",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "noEmit": true,
     "strict": true,
     "jsx": "preserve",
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "allowImportingTsExtensions": true,
     "allowJs": true,
     "noImplicitAny": true,
-    "lib": ["esnext"],
-    "types": ["node"]
-    //    "baseUrl": ".",
-    //    "paths": {
-    //      "@/*": ["./src/*"]
-    //    }
+    "lib": ["esnext", "dom"],
+    "types": ["vite-plus/client", "node"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  // "include": ["packages/**/*.ts", "packages/**/*.d.ts", "packages/**/*.tsx"],
   "exclude": ["node_modules"]
 }

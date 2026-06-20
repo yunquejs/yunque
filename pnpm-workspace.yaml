@@ -1,3 +1,25 @@
 packages:
   - docs
   - packages/**
+allowBuilds:
+  esbuild: true
+  simple-git-hooks: true
+  yorkie: set this to true or false
+peerDependencyRules:
+  ignoreMissing:
+    - '@algolia/client-search'
+    - typescript
+    - vite
+  allowAny:
+    - vite
+    - vitest
+  allowedVersions:
+    vite: '*'
+    vitest: '*'
+catalog:
+  vite: npm:@voidzero-dev/vite-plus-core@latest
+  vitest: 4.1.9
+  vite-plus: latest
+overrides:
+  vite: 'catalog:'
+  vitest: 'catalog:'

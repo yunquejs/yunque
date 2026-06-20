@@ -2,23 +2,23 @@
   "name": "@yunquejs/cli",
   "version": "0.2.1",
   "description": "A cli for creating front-end projects, encapsulating common templates, improving development efficiency.",
+  "keywords": [
+    "cli",
+    "yunque"
+  ],
+  "homepage": "https://github.com/yunquejs/yunque/tree/main/packages/cli#readme",
+  "bugs": {
+    "url": "https://github.com/yunquejs/yunque/issues"
+  },
+  "license": "MIT",
+  "author": "君惜",
   "repository": {
     "type": "git",
     "url": "https://github.com/yunquejs/yunque.git"
   },
-  "keywords": [
-    "yunque",
-    "cli"
-  ],
-  "bugs": {
-    "url": "https://github.com/yunquejs/yunque/issues"
-  },
-  "homepage": "https://github.com/yunquejs/yunque/tree/main/packages/cli#readme",
-  "author": "君惜",
-  "license": "MIT",
   "bin": {
-    "yunque": "bin/yunque.js",
-    "yq": "bin/yunque.js"
+    "yq": "bin/yunque.js",
+    "yunque": "bin/yunque.js"
   },
   "files": [
     "bin",
@@ -30,9 +30,9 @@
   "unpkg": "dist/index.min.js",
   "scripts": {
     "test": "jest",
-    "dev": "tsdown src/index.ts src/cli.ts --watch src",
+    "dev": "vp pack src/index.ts src/cli.ts --watch src",
     "build": "pnpm clean && run-p build:bundle",
-    "build:bundle": "tsdown src/index.ts src/cli.ts --dts --format esm --format cjs",
+    "build:bundle": "vp pack src/index.ts src/cli.ts --dts --format esm --format cjs",
     "clean": "rm -rf dist",
     "release": "yunque-release --gtp",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 --commit-path ."
@@ -58,6 +58,6 @@
     "@types/hash-sum": "^1.0.2"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=22.0.0"
   }
 }

@@ -19,10 +19,12 @@ pnpm add -D @yunquejs/fabric
 
 git `verify-commit`
 
+need install simple-git-hooks
+
 ```json
-"gitHooks": {
-  "pre-commit": "lint-staged",
-  "commit-msg": "verify-commit"
+"simple-git-hooks": {
+  "pre-commit": "lint-staged --concurrent false",
+  "commit-msg": "verify-commit $1"
 }
 ```
 

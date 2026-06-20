@@ -2,24 +2,24 @@
   "name": "@yunquejs/release",
   "version": "0.1.9",
   "description": "npm package version management，include build、test、push github、npm publish",
+  "keywords": [
+    "cli",
+    "release",
+    "yunque"
+  ],
+  "homepage": "https://github.com/yunquejs/yunque/tree/main/packages/release#readme",
+  "bugs": {
+    "url": "https://github.com/yunquejs/yunque/issues"
+  },
+  "license": "MIT",
+  "author": "君惜",
   "repository": {
     "type": "git",
     "url": "https://github.com/yunquejs/yunque.git"
   },
-  "keywords": [
-    "yunque",
-    "cli",
-    "release"
-  ],
-  "bugs": {
-    "url": "https://github.com/yunquejs/yunque/issues"
-  },
-  "homepage": "https://github.com/yunquejs/yunque/tree/main/packages/release#readme",
-  "author": "君惜",
-  "license": "MIT",
   "bin": {
-    "yunque-release": "bin/yunque-release.js",
-    "yqr": "bin/yunque-release.js"
+    "yqr": "bin/yunque-release.js",
+    "yunque-release": "bin/yunque-release.js"
   },
   "files": [
     "bin",
@@ -29,9 +29,9 @@
   "module": "dist/index.mjs",
   "scripts": {
     "test": "jest",
-    "dev": "tsdown src/index.js src/cli.js --watch src",
+    "dev": "vp pack src/index.js src/cli.js --watch src",
     "build": "pnpm clean && run-p build:bundle",
-    "build:bundle": "tsdown src/index.js src/cli.js --dts --format esm --format cjs",
+    "build:bundle": "vp pack src/index.js src/cli.js --dts --format esm --format cjs",
     "clean": "rm -rf dist",
     "release": "yunque-release --gtp",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 --commit-path ."
@@ -45,6 +45,6 @@
   },
   "devDependencies": {},
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=22.0.0"
   }
 }

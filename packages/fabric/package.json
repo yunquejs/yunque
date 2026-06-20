@@ -2,21 +2,21 @@
   "name": "@yunquejs/fabric",
   "version": "0.1.5",
   "description": "A collection of configuration files containing prettier, eslint, rollup.",
+  "keywords": [
+    "cli",
+    "release",
+    "yunque"
+  ],
+  "homepage": "https://github.com/yunquejs/yunque/tree/main/packages/fabric#readme",
+  "bugs": {
+    "url": "https://github.com/yunquejs/yunque/issues"
+  },
+  "license": "MIT",
+  "author": "君惜",
   "repository": {
     "type": "git",
     "url": "https://github.com/yunquejs/yunque.git"
   },
-  "keywords": [
-    "yunque",
-    "cli",
-    "release"
-  ],
-  "bugs": {
-    "url": "https://github.com/yunquejs/yunque/issues"
-  },
-  "homepage": "https://github.com/yunquejs/yunque/tree/main/packages/fabric#readme",
-  "author": "君惜",
-  "license": "MIT",
   "bin": {
     "verify-commit": "bin/verify-commit.js"
   },
@@ -36,7 +36,6 @@
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^7.4.0",
     "@typescript-eslint/parser": "^7.4.0",
-    "chalk": "^5.3.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-jsx-a11y": "6.8.0",
@@ -44,12 +43,12 @@
     "eslint-plugin-react": "7.34.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-vue": "^9.24.0",
+    "picocolors": "latest",
     "prettier": "^3.2.5",
-    "vue-eslint-parser": "^9.4.2",
-    "yorkie": "^2.0.0"
+    "vue-eslint-parser": "^9.4.2"
   },
   "devDependencies": {},
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=22.0.0"
   }
 }
